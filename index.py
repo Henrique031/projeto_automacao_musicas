@@ -3,74 +3,83 @@ import pyautogui as gui#Funçõse do teclado
 import pyperclip as clip#Copia oque está em ""
 import time
 
-
-artista = input("Digite o Nome do Artista: ")
-
-blocoNotas = pd.read_csv(r"D:\\musicas\\musicas_baixadas\\" + artista + "\\rascunho.txt", 
-header=None, 
-delimiter='/t',
-engine='python',
-)
-# print(blocoNotas)
-# caminho = "D:\\musicas\\musicas_baixadas\\" + artista
-
 def pegarPosicaoMouse(num):
     time.sleep(num)
     print(gui.position())
 
+while True:
+    erro = False
+    artista = input("Digite o Nome do Artista: ")
+    print("Carregando...")
+    time.sleep(1.5)
+
+    try:    
+        blocoNotas = pd.read_csv(r"D:\\musicas\\musicas_baixadas\\" + artista + "\\rascunho.txt", 
+        header=None, 
+        delimiter='/t',
+        engine='python',
+        )
+    except FileNotFoundError as e:
+        print("O arquivo não foi encontrado :(")
+        erro = True
+    except Exception as e:
+        print("Ocorreu um Erro Desconhecido")
+        erro = True        
+    finally:
+        if erro == False:
+            print("Arquivo encontratrado :)")
+            time.sleep(2)
+    if erro == False:
+        break
+    
 
 def abrirAtubeCatcher():
-    gui.press("win")
+    gui.hotkey("ctrl", "win", "d") #Criar nova area de trabalho
     time.sleep(2)
+    gui.press("win")
+    time.sleep(1.5)
     gui.write("aTube Catcher")
-    time.sleep(1)
+    time.sleep(0.3)
     gui.press("enter")
-    time.sleep(5)
+    time.sleep(1)
 
 
 def abrirEdgeNoYT():
     gui.press("win")
-    time.sleep(3)
+    time.sleep(1.5)
     gui.write("Microsoft Edge")
-    time.sleep(2)
-    gui.press("enter")
-    time.sleep(4)
-    gui.hotkey("ctrl", "t")
-    time.sleep(4)
-    clip.copy("https://www.youtube.com/")
-    gui.hotkey("ctrl", "v")
     time.sleep(0.5)
     gui.press("enter")
-    time.sleep(9)
-    gui.click(x=430, y=131)
+    time.sleep(6)
+    clip.copy("https://www.youtube.com/")
+    gui.hotkey("ctrl", "v")
+    gui.press("enter")
+    time.sleep(9) # Carregar yt
+    gui.click(x=430, y=131) #Clikar na barra de pesquisa
     time.sleep(3)
 
 
 def baixarPrimeiraMusicaDoArtista():
     nomeMusica = blocoNotas.loc[0, 0]
-    print(nomeMusica)
+    # print(nomeMusica)
     clip.copy(f"{artista} - {nomeMusica}")
     gui.hotkey("ctrl", "v")
     gui.press("enter")
     time.sleep(2)
-    #Copiar Url do Vídeo
-    gui.rightClick(x=799, y=230)
-    time.sleep(2)
-    gui.click(x=892, y=378)
-    #======================
-    time.sleep(1)
-    gui.hotkey("win", "tab")
-    time.sleep(1)
-    gui.hotkey('right')
-    time.sleep(1)
-    gui.hotkey("enter")
-    time.sleep(1)
+    #Copiar link do video
+    gui.moveTo(x=453, y=309) #mouse por cima do video
+    time.sleep(0.2)
+    gui.hotkey("ctrl", "c")# copiar link do video
+    time.sleep(0.3)
+    #==================
+    gui.hotkey("alt", "tab") # Voltar para atubeCatcher
+    time.sleep(0.3)
     #Botões colar e baixar música
-    gui.click(x=776, y=200)
+    gui.click(x=776, y=200) # Botão colar aTubeCatcher
     time.sleep(0.5)
-    gui.click(x=847, y=229)
+    gui.click(x=847, y=218) # Botão baixar atubeCatcher
     #==============
-    time.sleep(4)
+    time.sleep(1)
     
 def baixarRestoDasMusicas():
     i = 1
@@ -78,28 +87,27 @@ def baixarRestoDasMusicas():
         gui.hotkey("alt", "tab") #Ir para yt
         time.sleep(0.3)
         gui.click(x=656, y=131) #Botão de perquisa YT
-        # time.sleep(0.3)
-        gui.hotkey("ctrl", "a") #Selecionar txt inteiro
-        # time.sleep(3)
-        nomeMusica = blocoNotas.loc[i, 0] #pegar segunda musica
+        time.sleep(0.3)
+        gui.hotkey("ctrl", "a") #Selecionar todo texto
+        nomeMusica = blocoNotas.loc[i, 0] #pegar segunda musica diante
         clip.copy(f"{artista} - {nomeMusica}") #copiar musica
         gui.hotkey("ctrl", "v") #colar musica
-        # time.sleep(3)
+        time.sleep(0.3)
         gui.press("enter") #enter
-        time.sleep(5)
+        time.sleep(4)
         #Copiar link do video
         gui.moveTo(x=453, y=309) #mause por cima
         time.sleep(0.2)
         gui.hotkey("ctrl", "c")
-        # time.sleep(3)
+        time.sleep(0.3)
         #========= 
         gui.hotkey("alt", "tab")#Voltar para AC(aTubeCatcher)
-        time.sleep(0.2)
+        time.sleep(0.3)
         #Botões colar e baixar música
-        gui.click(x=776, y=200)
-        time.sleep(1)
-        gui.click(x=847, y=235)
-        time.sleep(2)
+        gui.click(x=776, y=200) #Botão colar atubeCatecher
+        time.sleep(0.3)
+        gui.click(x=847, y=235) #Botão baixar atubeCatecher
+        time.sleep(0.3)
         #==============
         i+=1
 
@@ -111,4 +119,6 @@ baixarRestoDasMusicas()
 
 pegarPosicaoMouse(1)
 pegarPosicaoMouse(5)
+
+
 

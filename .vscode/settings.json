@@ -1,0 +1,13 @@
+{
+    "cSpell.words": [
+        "audiofile",
+        "automacao",
+        "Icones",
+        "moviepy",
+        "pytube"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none"
+}

@@ -2,12 +2,26 @@
     "cSpell.words": [
         "audiofile",
         "automacao",
+        "bestaudio",
+        "botao",
+        "errc",
+        "errh",
+        "errt",
         "Icones",
         "moviepy",
-        "pytube"
+        "opcao",
+        "outtmpl",
+        "pafy",
+        "Patrocinio",
+        "postprocessors",
+        "preferredcodec",
+        "preferredquality",
+        "pytube",
+        "startfile",
+        "Youtube"
     ],
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
+        "editor.defaultFormatter": "ms-python.python"
     },
     "python.formatting.provider": "none"
 }

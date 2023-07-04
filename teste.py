@@ -1,46 +1,39 @@
-''' import pyautogui as gui
-import time '''
+import pandas as pd
 
-''' location = gui.locateCenterOnScreen('print.png', grayscale=True) 
-teste = True if location else False
-print(teste) '''
-    
-# print(encontrou)
+"""  
+# Gerando acesso token para o uso da api do spotify
+url = 'https://accounts.spotify.com/api/token'
 
-''' location = gui.locateCenterOnScreen('print.png', grayscale=True, confidence=0.9)
-if location:
-    x, y = location
-    print(location)
-    print(x)
-    print(y)
-    gui.moveTo(10, y)
-    
-else:
-    encontrou = False
-    print("tesdfds")
-     '''
-    
-''' musica = "choram as rosas"
-altor = input("Deseja Inserir um Nome de um Altor? ").lower()  
-if altor == "s" or altor == "sim":
-    altor = True
-    nomeAltor = input("Nome do Altor: ").title()
-else:
-    altor = False
- '''
-# print(f"{nomeAltor if altor == True  else ''}")
+data = {
+  'grant_type': 'client_credentials',
+  'client_id': '894f0272e3914f6990c92ab317992de0',
+  'client_secret': '52d12e90189c4dc4bde7e65bfb1270e2'
+}
 
+response = requests.post(url, data=data)
+access_token = response.json()['access_token']
 
-# x = 5
-# print(f"x é {'maior que 3' if x > 3 else 'menor ou igual a 3'}") # Imprimirá "x é maior que 3"
+# get
+artist_id = '3p7PcrEHaaKLJnPUGOtRlT'
+url = f'https://api.spotify.com/v1/artists/{artist_id}/top-tracks?market=br'
+headers = {
+  'Authorization': f'Bearer {access_token}'
+}
 
+response = requests.get(url, headers=headers)
+artist_data = response.json()
 
-''' minha_lista = []
-quantidade = int(input("Quantos valores deseja adicionar? "))
-for i in range(quantidade):
-    valor = input("Insira um valor: ")
-    minha_lista.append(valor)
-print(minha_lista) '''
+jsonParsed = json.dumps(artist_data, indent=4)
+# print(jsonParsed)
+ """
+ 
 
-
-    
+ 
+dfMusicas = pd.read_csv("nome-musicas.txt", header=None, delimiter='/t', engine='python')
+nomeArtista = 'marilia mendonça'.title()
+with open('nome-musicas.txt', 'w', encoding='utf-8') as musicas:
+        i = 0
+        while i < len(dfMusicas):
+            nomeMusica = dfMusicas.loc[i, 0].title()
+            musicas.write(f'{nomeArtista} - {str(nomeMusica)}\n')
+            i +=1

@@ -1,5 +1,3 @@
-virtual
-dist
-build
-src/img/*
+topMusicas.py
 teste.py
+src/img

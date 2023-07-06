@@ -1,3 +1,5 @@
 virtual
 dist
 build
+src/img/*
+teste.py

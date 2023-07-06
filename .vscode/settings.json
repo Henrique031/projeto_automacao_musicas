@@ -9,6 +9,7 @@
         "errt",
         "Icones",
         "moviepy",
+        "noplaylist",
         "opcao",
         "outtmpl",
         "pafy",
@@ -17,6 +18,7 @@
         "preferredcodec",
         "preferredquality",
         "pytube",
+        "qtde",
         "startfile",
         "Youtube"
     ],

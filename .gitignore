@@ -1,5 +1,6 @@
-topMusicas.py
 teste.py
-src/img
+src\img\
 ffmpeg.exe
 yt-dlp.exe
+*.png
+pictures    

@@ -1,0 +1,182 @@
+{
+    "kind": "youtube#searchListResponse",
+    "etag": "jaqj981ux3sEY_1gE3krSi7vxpM",
+    "nextPageToken": "CAUQAA",
+    "regionCode": "BR",
+    "pageInfo": {
+        "totalResults": 1000000,
+        "resultsPerPage": 5
+    },
+    "items": [
+        {
+            "kind": "youtube#searchResult",
+            "etag": "W-InOwYuxo7tV8MulvRhIACPtKU",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "uWX0O8ATY3k"
+            },
+            "snippet": {
+                "publishedAt": "2011-03-06T21:27:21Z",
+                "channelId": "UCO3IrVb2zWVZmo9Lila2GbQ",
+                "title": "Bruno &amp; Marrone - Dormi na Pra\u00e7a (Ao Vivo)",
+                "description": "O v\u00eddeo ao vivo de Bruno & Marrone para a m\u00fasica 'Dormi na Pra\u00e7a'. Clique aqui para ouvir Bruno & Marrone no Spotify: ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/uWX0O8ATY3k/default.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/uWX0O8ATY3k/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/uWX0O8ATY3k/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "BrunoEMarroneVEVO",
+                "liveBroadcastContent": "none",
+                "publishTime": "2011-03-06T21:27:21Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "BA1J5gC4_D42fyn7VZSSVoKL5O4",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "74JwCrPlRIw"
+            },
+            "snippet": {
+                "publishedAt": "2016-09-21T07:00:01Z",
+                "channelId": "UCO3IrVb2zWVZmo9Lila2GbQ",
+                "title": "Bruno &amp; Marrone - Dormi na Pra\u00e7a (Ao Vivo)",
+                "description": "Baixe agora o \u00e1lbum \"Agora (Ao Vivo)\": http://smarturl.it/AgoraAoVivo Compre tamb\u00e9m nas Lojas Americanas: ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/74JwCrPlRIw/default.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/74JwCrPlRIw/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/74JwCrPlRIw/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "BrunoEMarroneVEVO",
+                "liveBroadcastContent": "none",
+                "publishTime": "2016-09-21T07:00:01Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "_QCZya34Vdi-ZxMPMFArmtSjTE4",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "FYU9isDJp48"
+            },
+            "snippet": {
+                "publishedAt": "2016-10-03T01:09:38Z",
+                "channelId": "UCN8YacS1DaFyxHZt7fC_bxA",
+                "title": "Bruno e Marrone - Dormi Na Pra\u00e7a (1994)",
+                "description": "V\u00eddeo Enviado Por (Inaiber Falc\u00e3o)",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/FYU9isDJp48/default.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/FYU9isDJp48/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/FYU9isDJp48/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "Inaiber Falc\u00e3o M\u00fasicas Sertanejas",
+                "liveBroadcastContent": "none",
+                "publishTime": "2016-10-03T01:09:38Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "baHTXEP9eN-DSFpDKEUz8mAKgfI",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "TfJsiSMC0U8"
+            },
+            "snippet": {
+                "publishedAt": "2019-03-10T14:00:05Z",
+                "channelId": "UCO3IrVb2zWVZmo9Lila2GbQ",
+                "title": "Bruno &amp; Marrone - Dormi Na Pra\u00e7a (Ao Vivo)",
+                "description": "Clique e ou\u00e7a o EP completo: https://umusicbrazil.lnk.to/LaPeliculaYD SIGA BRUNO E MARRONE ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/TfJsiSMC0U8/default.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/TfJsiSMC0U8/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/TfJsiSMC0U8/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "BrunoEMarroneVEVO",
+                "liveBroadcastContent": "none",
+                "publishTime": "2019-03-10T14:00:05Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "0DxlQczXcbkXtdPsKlGqHxhGTLc",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "PH_3aGOCaQU"
+            },
+            "snippet": {
+                "publishedAt": "2023-04-28T00:03:25Z",
+                "channelId": "UCoiH2CN6DEO2Tiit80XKX8w",
+                "title": "Dormi Na Pra\u00e7a",
+                "description": "Provided to YouTube by Worldshow Dormi Na Pra\u00e7a \u00b7 Bruno & Marrone \u00b7 LEONARDO \u00b7 Cabar\u00e9 \u00b7 Elias Muniz \u00b7 F\u00e1tima Le\u00e3o \u00b7 Elias ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/PH_3aGOCaQU/default.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/PH_3aGOCaQU/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/PH_3aGOCaQU/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "Bruno & Marrone - Topic",
+                "liveBroadcastContent": "none",
+                "publishTime": "2023-04-28T00:03:25Z"
+            }
+        }
+    ]
+}

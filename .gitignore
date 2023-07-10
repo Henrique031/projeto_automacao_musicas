@@ -1,6 +1,6 @@
 teste.py
-src\img\
 ffmpeg.exe
 yt-dlp.exe
-*.png
-pictures    
+pictures
+apiYT.py
+apiSpotify.py

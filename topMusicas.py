@@ -9,17 +9,17 @@ listaTopMusicas = []
 
 def renomearArtista():
   numeroIndex = int(input(f'Número correspondente a linha do Artista [0 á {len(artista_qtdeMusicas) - 1}]: '))
-  artista_qtdeMusicas[numeroIndex][0] = input('Novo nome: ').title()
+  artista_qtdeMusicas[numeroIndex][0] = input('Novo nome: ').title().strip()
   print(tabulate(artista_qtdeMusicas, headers=['Artistas/Bandas', "Qtde Músicas"], tablefmt='pretty', numalign='right', showindex=True))
 
 
 while True:
   print('Adicione os nomes de UM ou MAIS artista ou banda\nou [N] para COMEÇAR DOWNLOADS')
-  artista = input('Artista/Banda: ').title()
+  artista = input('Artista/Banda: ').title().strip()
   if artista == 'N':
     break
   
-  qtdeMusicas = input('Número de Músicas (MÁXIMO 25) ou tecla ENTER (PADRÃO 25): ')
+  qtdeMusicas = input('Número de Músicas (MÁXIMO 25) ou tecla ENTER (PADRÃO 25): ').strip()
   if qtdeMusicas == '':
     qtdeMusicas = 25
   else:
@@ -27,7 +27,7 @@ while True:
   if qtdeMusicas > 25:
     while True:
       print('No MÁXIMO 25 músicas')
-      qtdeMusicas = input('Número de Músicas (MÁXIMO 25) ou enter (PADRÃO 25): ')
+      qtdeMusicas = input('Número de Músicas (MÁXIMO 25) ou enter (PADRÃO 25): ').strip()
       if qtdeMusicas == '':
         qtdeMusicas = 25
         break
@@ -44,7 +44,7 @@ while True:
   
 while True:
   print('Deseja renomear algum nome de um ARTISTA ou BANDA? [s] [n]')
-  respRenomear = input('r: ').lower()
+  respRenomear = input('r: ').lower().strip()
   if respRenomear == 'n':
     break
   else:
@@ -78,7 +78,7 @@ def pegarTopMusicas(artista, qtdeMusica):
 def addAstistasDf():
     with open('nome-musicas.txt', 'w', encoding='utf-8') as musicas:
         for i in listaTopMusicas:
-          musicas.write(i[0] + '\n')
+          musicas.write(i[0].strip() + '\n')
 
 i = 0
 while i < (len(artista_qtdeMusicas)):

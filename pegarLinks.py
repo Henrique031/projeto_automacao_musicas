@@ -1,11 +1,16 @@
 import pandas as pd   # Ler Arquivos (usado para ler um bloco de notas)
 import os # Recursos do sistema operacional 
 import threading as thr # Baixar músicas em segundo plano
-from pyautogui import *  # Funções do teclado (atalhos do teclado e escrever)
-from pyperclip import copy, paste  # Copia e cola
 from time import sleep # Fazer o programa esperar alguns segundos antes de continuar a execução
 from tabulate import tabulate # Ver a saída mais organizada
 from yt_dlp import YoutubeDL # Baixar videos yt
+from googleapiclient.discovery import build # API YouTube
+from requests import get, exceptions
+
+
+DEVELOPER_KEY = os.environ['YOUTUBE_API_KEY']
+YOUTUBE_API_SERVICE_NAME = 'youtube'
+YOUTUBE_API_VERSION = 'v3'
 
 
 nomeArtista = ''
@@ -94,143 +99,37 @@ else:
     sleep(1.5)    
 
 
-def criarAreaTrabalho():
-    hotkey("ctrl", "win", "d", interval=0.5) # Eu criei um atalho para criar uma nova area de trabalho
-    sleep(1)    
-    
-    
-def abrirEdge():
-    hotkey("ctrl", "alt", "n", interval=1) # Eu criei um atalho para abrir o edge
-    procurarCasinhaEdge()
-    
-def abrirEdgeAnonimo():
-    hotkey("ctrl", "shift", "n", interval=0.5) # Criar uma nova pagina anonima
-    procurarInPrivate()
-    
-
-#Procurar casinha do navegador para liberar continuação
-def procurarCasinhaEdge():
-    while not locateCenterOnScreen('src\\img\\casinha-edge.png', grayscale=True, confidence=0.7):
-        sleep(3)
-        hotkey('win', 'up',interval=0.5)
-        # sleep(1)
-        # hotkey('win', 'd',interval=0.5)
-        # sleep(1)
-        # hotkey('win', 'shift', 'm',interval=0.5)
-        
-
-def procurarInPrivate():
-    while not locateCenterOnScreen('src\\img\\in-private.png', grayscale=True, confidence=0.8):
-        sleep(1)
-        hotkey('win', 'up')
-
-
-# Entrar já pesquisando o nome da música no YouTube
-def pesquisaRapida():
-    hotkey("alt", "d") # Barra de pesquisa do navegador
-    sleep(0.3)
-    write('Y', interval=0.3) # Escrever Y para depois dar tab (pesquisa no YT rápida direto da barra de pesquisa)
-    hotkey('tab') # Ativar pesquisa rápida YT
-    
-
 def pegarNomeMusica(linhaMusica):
     # Pegar musicas do bloco de notas
     nomeMusica = dfMusicas.loc[linhaMusica, 0].title() # [Linha, Coluna]  # title() deixa a primeira letra em maiúsculo
-    copy(f"{nomeMusica}")
+    search_video_by_title(nomeMusica)
 
-
-def colarMusicaDpsEnter():
-    hotkey("ctrl", "v") # Colar nome da musica na barra de pesquisa rápida
-    sleep(0.5)
-    press("enter") # Enter para ir na musica desejada
-
-
-def procurarImagensVideoYT():
-    hotkey('ctrl', '0') # Maximizar tela
-    # Procurar imagem do nome "há" de no preview de um vídeo
-    while not locateCenterOnScreen('src\\img\\bt-atualizar-navegador.png', grayscale=True, confidence=0.7):
-        sleep(1)
-    sleep(0.5)
-    while not locateCenterOnScreen('src\\img\\logo-yt.png', grayscale=True, confidence=0.7):
-        sleep(1)
-    sleep(0.5)
-    while not locateCenterOnScreen('src\\img\\ha-yt.png', grayscale=True, confidence=0.8):
-        sleep(1)   
-    sleep(0.5)
-    # Procurar imagem da casinha no YT
-    while not locateCenterOnScreen('src\\img\\casa-inicio-yt.png', grayscale=True, confidence=0.6):
-        sleep(1)
-    sleep(0.5)
-
-        
-def verificarVideoPatrocinio():
-    # Procurando video anuncio
+def search_video_by_title(title):
     
-    seg = 2 # 2 segundo procurando videos de patrocínio 
-    while not locateCenterOnScreen('src\\img\\video-anuncio.png', grayscale=True, confidence=0.8):
-        sleep(1)
-        seg -= 1
-        if (seg <= 0):# igual a zero é pq não achou
-            break    
-    if (seg > 0): # se for maior que zero é pq achou
-        return True
+    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
 
-    seg = 2
-    while not locateCenterOnScreen('src\\img\\video-patrocinado.png', grayscale=True, confidence=0.8):
-        sleep(1)
-        seg -= 1
-        if (seg <= 0): # igual a zero é pq não achou
-            break     
-    if (seg > 0): # se for maior que zero é pq achou
-        return True
-        
-    return False
-        
-        
-def moverCopiarLink():
-    videoPatrocinio = verificarVideoPatrocinio() # Tem video anuncio? True/False
-    # Se for localizado video com patrocínio/anúncio
-    print(f"Video com Anuncio?:  {videoPatrocinio}")
-    if (videoPatrocinio):
-        moveTo(x=434, y=540, duration=0.3) # Clicar no centro do vídeo do YT
+    
+    try:
+        search_response = youtube.search().list(
+            q=title,
+            type='video',
+            part='id,snippet',
+            maxResults=1
+        ).execute()
+    except exceptions.HTTPError as error:
+        print(f'An HTTP error {error.resp.status} occurred: {error.content}')
+    except Exception as error:
+        print(f'An error occurred: {error}')
     else:
-        while not locateCenterOnScreen('src\\img\\centro-video-yt.png', grayscale=True, confidence=0.4):
-            print('Centro do video sem anuncio')
-            sleep(1)
-        # Colocar o cursor em cima do vídeo
-        urlVideo = locateCenterOnScreen(
-                            'src\\img\\centro-video-yt.png', grayscale=True, confidence=0.4)
-        print(urlVideo)
-        x, y = urlVideo
-        
-        moveTo(x + 240, y + 140, duration=0.3) # Clicar no centro do vídeo do YT
+        video_id = search_response['items'][0]['id']['videoId']
+        video_url = f'https://www.youtube.com/watch?v={video_id}'
+    # finally:
+        # print('Musica baixada com sucesso')
 
-
-def btDireito():    
-    rightClick() # Clica com botão direito
-            
-            
-def procurarImagemOpcaoLink():
-    seg = 3
-    # Procurar a botão de copiar link
-    while not locateCenterOnScreen('src\\img\\copiar-link-yt.png', grayscale=True, confidence=0.6):
-        sleep(1)
-        seg -= 1
-        if seg == 0:
-            rightClick()
-        
-    
-# Clicar na opção de copiar link, após de clicar com botão direito do mouse
-def clicarCopiarLink():
-    procurarImagemOpcaoLink()
-    btCopiarLink = locateCenterOnScreen('src\\img\\copiar-link-yt.png', grayscale=True, confidence=0.6)
-    moveTo(btCopiarLink, duration=0.4)
-    sleep(0.5)
-    click()
+    segundoPlanoDownloadMusica(video_url)
 
             
 def downloadMusica(url):
-    
     ydl_opts = {
         'format': 'bestaudio/best',
         'noplaylist': True,
@@ -244,20 +143,14 @@ def downloadMusica(url):
         'outtmpl': 'D:\Lenda Viva\Music\musicas-baixadas\%(title)s.%(ext)s',
     }
 
-
     with YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
+            
             
 def segundoPlanoDownloadMusica(url):
     thread = thr.Thread(target=downloadMusica, args=(url,))
     thread.start()
         
-def fecharPaginas():
-    hotkey('alt', 'f4')
-    sleep(1)
-    hotkey('alt', 'f4')
-    sleep(1)
-    hotkey('win', 'ctrl', 'f4') # Encerrar area de trabalho virtual
         
 def programaFinalizado():
     if respCriarPasta:
@@ -266,24 +159,10 @@ def programaFinalizado():
         os.startfile(r'D:\Lenda Viva\Music\musicas-baixadas') # Abrir gerenciador de arquivos no caminho especificado
             
     
-criarAreaTrabalho()
-abrirEdge()
-abrirEdgeAnonimo()
-
-
 i = 0
 while (i < len(dfMusicas)):
-    pesquisaRapida()
     pegarNomeMusica(i)
-    colarMusicaDpsEnter()
-    procurarImagensVideoYT()
-    moverCopiarLink() # Dps de validado se á video com patrocínio
-    btDireito()
-    clicarCopiarLink()
-    segundoPlanoDownloadMusica(str(paste()))
     i+= 1
     
-
-fecharPaginas()
 
 programaFinalizado()

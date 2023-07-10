@@ -10,6 +10,7 @@
         "Icones",
         "moviepy",
         "noplaylist",
+        "numeros",
         "opcao",
         "outtmpl",
         "pafy",
@@ -20,6 +21,7 @@
         "pytube",
         "qtde",
         "startfile",
+        "youtube",
         "Youtube"
     ],
     "[python]": {

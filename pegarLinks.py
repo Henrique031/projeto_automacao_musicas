@@ -7,12 +7,6 @@ from yt_dlp import YoutubeDL # Baixar videos yt
 from googleapiclient.discovery import build # API YouTube
 from requests import get, exceptions
 
-
-DEVELOPER_KEY = os.environ['YOUTUBE_API_KEY']
-YOUTUBE_API_SERVICE_NAME = 'youtube'
-YOUTUBE_API_VERSION = 'v3'
-
-
 nomeArtista = ''
 nomePasta = ''
 
@@ -106,6 +100,10 @@ def pegarNomeMusica(linhaMusica):
 
 def search_video_by_title(title):
     
+    DEVELOPER_KEY = os.environ['YOUTUBE_API_KEY']
+    YOUTUBE_API_SERVICE_NAME = 'youtube'
+    YOUTUBE_API_VERSION = 'v3'
+    
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
 
     
@@ -113,13 +111,14 @@ def search_video_by_title(title):
         search_response = youtube.search().list(
             q=title,
             type='video',
-            part='id,snippet',
-            maxResults=1
+            part='id',
+            maxResults=1,
+            fields='items(id(videoId))'
         ).execute()
     except exceptions.HTTPError as error:
-        print(f'An HTTP error {error.resp.status} occurred: {error.content}')
+        print(f'Um erro HTTP {error.resp.status} Causa: {error.content}')
     except Exception as error:
-        print(f'An error occurred: {error}')
+        print(f'Um erro ocorreu: {error}')
     else:
         video_id = search_response['items'][0]['id']['videoId']
         video_url = f'https://www.youtube.com/watch?v={video_id}'
@@ -135,6 +134,7 @@ def downloadMusica(url):
         'noplaylist': True,
         'quiet': True,
         'no_warnings': True,
+        '--audio-format': 'best',
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
@@ -165,4 +165,4 @@ while (i < len(dfMusicas)):
     i+= 1
     
 
-programaFinalizado()
+# programaFinalizado()

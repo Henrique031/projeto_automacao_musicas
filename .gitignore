@@ -4,3 +4,9 @@ yt-dlp.exe
 pictures
 apiYT.py
 apiSpotify.py
+index.html
+resp.json
+test.py
+*.json
+nome-musicas.txt
+node_modules

@@ -1,4 +1,4 @@
 from apiYT import buscaUrlVideoYT
-from apiVagalume import addArtista
+from apiVagalume import buscarTopMusicas, addDadosMusica
 
-addArtista()
+addDadosMusica()

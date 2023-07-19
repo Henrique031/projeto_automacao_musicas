@@ -7,8 +7,10 @@ from yt_dlp import YoutubeDL # Baixar videos yt
 from googleapiclient.discovery import build # API YouTube
 from requests import get, exceptions
 
+
 nomeArtista = ''
 nomePasta = ''
+
 
 # Validar se o arquivo foi encontrado.
 erro = False

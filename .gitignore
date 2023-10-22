@@ -1,12 +1,12 @@
 teste.py
-ffmpeg.exe
-yt-dlp.exe
 pictures
 apiYT.py
 apiSpotify.py
 index.html
 resp.json
 test.py
-*.json
 nome-musicas.txt
 node_modules
+youtube.py
+lixeira
+resp.json

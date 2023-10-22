@@ -15,20 +15,26 @@
         "outtmpl",
         "pafy",
         "Patrocinio",
+        "pbar",
         "postprocessors",
         "preferredcodec",
         "preferredquality",
         "pytube",
         "qtde",
+        "showindex",
+        "spotify",
+        "spotipy",
         "startfile",
         "tqdm",
         "vagalume",
         "VAGALUME",
         "youtube",
-        "Youtube"
+        "Youtube",
+        "ytdl"
     ],
     "[python]": {
         "editor.defaultFormatter": "ms-python.python"
     },
-    "python.formatting.provider": "none"
+    "python.formatting.provider": "none",
+    "liveServer.settings.port": 5501
 }

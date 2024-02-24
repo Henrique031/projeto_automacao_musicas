@@ -22,7 +22,7 @@ sp = spotipy.Spotify(
               )
   )
 
-def addTopCurrentTracks(nameArtist, amountMusics=30): # Melhores músicas atuais
+def addTopCurrentTracks(nameArtist, amountMusics=10): # Melhores músicas atuais
   result = sp.search(q=f'This Is {nameArtist}', type='playlist', limit=3)
 
   for i, item in enumerate(result['playlists']['items']):
@@ -36,17 +36,15 @@ def addTopCurrentTracks(nameArtist, amountMusics=30): # Melhores músicas atuais
         for i in TRACKS['items']:
           nameMusics.append(nameArtist + ' - ' +  i['track']['name'])
         return {
-          'nameFunc': addTopCurrentTracks.__name__,
           'result': nameMusics,
           'length': len(nameMusics),
-          'nameArtist': nameArtist
         }
         
       else:
           print("Artista não encontrado")
           
 
-def addTopOldTracks(nameArtist, amountMusics = 30): # Melhores músicas antigas
+def addTopOldTracks(nameArtist, amountMusics = 20): # Melhores músicas antigas
   RESULT = sp.search(q=f'{nameArtist} - Antigas', type='playlist', limit=1) # pegar id playlist
   
   ID_PLAYLIST = RESULT['playlists']['items'][0]['id'] # Pegando id Playlist
@@ -57,10 +55,8 @@ def addTopOldTracks(nameArtist, amountMusics = 30): # Melhores músicas antigas
     for i in TRACKS['items']:
       nameMusics.append(nameArtist + ' - ' +  i['track']['name'])
     return {
-      'nameFunc': addTopOldTracks.__name__,
       'result': nameMusics,
       'length': len(nameMusics),
-      'nameArtist': nameArtist
     }
       
   else:
@@ -69,39 +65,23 @@ def addTopOldTracks(nameArtist, amountMusics = 30): # Melhores músicas antigas
   
   
 #Buscar albums
-def addSearchAlbumsArtist(nameArtist, recentAlbum = False):
+def addSearchAlbumsArtist(nameArtist):
   RESULT = sp.search(q=f'{nameArtist} - Antigas', type='artist', limit=1) # Pegar id artista
   ID_ARTIST = RESULT['artists']['items'][0]['id']
   
   RESULT = sp.artist_albums(artist_id=ID_ARTIST, album_type='album')
     
-  
+  # Mostrar albums
   albums = []
   for i, item in enumerate(RESULT['items']):
     albums.append([item['name'], item['release_date'], item['total_tracks'], item['external_urls']['spotify'], item['id']])
     print(f'\nÍNDICE: {i}')
-    print(f"Nome: {albums[i][0]}\nData: {albums[i][1]}\nQtde de Músicas: {albums[i][2]}\nUrl Playlist: {albums[i][3]}")
+    print(f'Nome: {albums[i][0]}')
+    print(f'Data: {albums[i][1]}')
+    print(f'Qtde de Músicas: {albums[i][2]}')
+    # print(f'Url Playlist: {albums[i][3]}')
     
-    if recentAlbum:
-      result = sp.album_tracks(album_id=albums[0][4]) # Pegando as faixas
-      
-      tracks = []
-      for i in result['items']:
-        tracks.append([i['name']])
-
-        print('')
-        print(i['name'] + '\n' + i['preview_url'])
-        
-        
-      return {
-      'nameFunc': addSearchAlbumsArtist.__name__,
-      'result': tracks,
-      'length': len(tracks),
-      'nameArtist': nameArtist,
-      'nameAlbum': albums[0][0]
-    }
-        
-      
+  
   # Mostrar Músicas de um album
   INDEX = int(input('Escolha o índice do album: \nR: '))
   
@@ -109,17 +89,13 @@ def addSearchAlbumsArtist(nameArtist, recentAlbum = False):
   
   tracks = []
   for i in result['items']:
-    tracks.append([i['name']])
-
+    tracks.append([f'{nameArtist} ({albums[INDEX][0]}) - {i['name']}'])
     print('')
     print(i['name'])
-    print(i['preview_url'])
 
   return {
-    'nameFunc': addSearchAlbumsArtist.__name__,
     'result': tracks,
     'length': len(tracks),
-    'nameArtist': nameArtist,
     'nameAlbum': albums[INDEX][0]
   }    
   
@@ -146,11 +122,8 @@ def addOneMusic(nameMusicArtist):
   """ response = input(f'Deseja adicionar {artists} - {nameMusic} \n[s, n]\nR: ').lower()
   if response == 's': """
   return {
-    'nameFunc': addOneMusic.__name__, 
     'result': f'{artists} - {nameMusic}',
     'length': 1,
-    'nameArtist': artists,
-    'nameAlbum': None
   }
   """ else:
     return False """

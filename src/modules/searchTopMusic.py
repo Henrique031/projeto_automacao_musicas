@@ -99,21 +99,3 @@ def addSearchAlbumsArtist(nameArtist):
     'nameAlbum': albums[INDEX][0]
   }    
   
-  
-
-# Buscar músicas individuais
-
-def addOneMusic(nameMusicArtist, nameArtist):
-  
-  result = sp.search(q=nameMusicArtist, limit=1)['tracks']['items'][0]
-
-  nameMusic = []
-  nameMusic.append(f'{nameArtist} - {result['name']}') # nome da música
-  
-
-  # artists = ', '.join(artists) # concatenar todos artistas separados por vingula
-    
-  return {
-    'result': nameMusic,
-    'length': 1,
-  }

@@ -1,0 +1,5 @@
+pandas
+tabulate
+youtube-search-python
+yt_dlp
+spotipy

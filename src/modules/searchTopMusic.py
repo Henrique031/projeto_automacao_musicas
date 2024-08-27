@@ -5,7 +5,9 @@ import sys
 # import json
 
 client_id = os.environ['CLIENT_ID_SP']
+# 894f0272e3914f6990c92ab317992de0
 client_secret = os.environ['CLIENT_SECRET_SP']
+# 52d12e90189c4dc4bde7e65bfb1270e2
 
 client_credentials_manager = SpotifyClientCredentials(
   client_id=client_id, 
@@ -21,6 +23,8 @@ sp = spotipy.Spotify(
                 scope='playlist-read-private'
               )
   )
+
+print('passou!!!!')
 
 def addTopCurrentTracks(nameArtist, amountMusics=10): # Melhores músicas atuais
   result = sp.search(q=f'This Is {nameArtist}', type='playlist', limit=3)
@@ -44,8 +48,8 @@ def addTopCurrentTracks(nameArtist, amountMusics=10): # Melhores músicas atuais
           print("Artista não encontrado")
           
 
-def addTopOldTracks(nameArtist, amountMusics = 20): # Melhores músicas antigas
-  RESULT = sp.search(q=f'{nameArtist} - Antigas', type='playlist', limit=1) # pegar id playlist
+def addTopOldTracks(nameArtist, amountMusics = 25): # Melhores músicas antigas
+  RESULT = sp.search(q=f'{nameArtist}', type='playlist', limit=1) # pegar id playlist
   
   ID_PLAYLIST = RESULT['playlists']['items'][0]['id'] # Pegando id Playlist
   if len(ID_PLAYLIST) > 0:

@@ -1,0 +1,4 @@
+pandas
+tabulate
+yt_dlp
+google-api-python-client

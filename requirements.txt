@@ -1,10 +1,4 @@
 pandas
 tabulate
-<<<<<<< HEAD
 yt_dlp
 google-api-python-client
-=======
-youtube-search-python
-yt_dlp
-spotipy
->>>>>>> 9392410b911ce31c3924e3a0e8c7f728cfdf5726

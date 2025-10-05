@@ -2,3 +2,4 @@ pandas
 tabulate
 yt_dlp
 google-api-python-client
+# pip install -r requirements.txt

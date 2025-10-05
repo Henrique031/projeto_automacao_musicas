@@ -13,6 +13,7 @@ def setDF(tracksName, length=0, nameArtist='', album=False):
           if i != length -1:
             file.write('\n')
   else:
+    
     with open('nome-musicas.txt', 'w+', encoding='utf-8') as file:
         for i, music in enumerate(tracksName):
           file.write(f'{music}')
